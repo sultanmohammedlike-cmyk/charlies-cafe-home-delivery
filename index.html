@@ -6,7 +6,6 @@
     <title>Charlie's Cafe - Premium Coffee Experience</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* CSS Variables for consistent theming */
         :root {
             --primary-color: #006241;
             --secondary-color: #d4e9e2;
@@ -18,7 +17,6 @@
             --transition: all 0.3s ease;
         }
 
-        /* Base Styles */
         * {
             margin: 0;
             padding: 0;
@@ -991,7 +989,7 @@
     </div>
 
     <script>
-        // Menu Data with proper image mapping
+        // Menu Data with corrected prices from your images
         const menuData = {
             sandwiches: [
                 { name: "Veg Sandwich", price: 60, description: "Fresh vegetables in soft bread" },
@@ -1148,11 +1146,30 @@
             ]
         };
 
-        // For demo purposes, I'll use placeholder images for all items
+        // High-quality, relevant food images for each category
+        const categoryImages = {
+            sandwiches: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+            pizza: "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+           "cold-drinks": "https://images.pexels.com/photos/4051783/pexels-photo-4051783.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&dpr=1",
+            fruits: "https://images.pexels.com/photos/1352296/pexels-photo-1352296.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&dpr=1",
+            mojitoes: "https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+            smoothies: "https://images.unsplash.com/photo-1570197788417-0e82375c9371?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+            burgers: "https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+            milkshakes: "https://images.unsplash.com/photo-1570197788417-0e82375c9371?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+            desserts: "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+            momos: "https://images.unsplash.com/photo-1589647363585-f4a7d3877b10?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+            nachos: "https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+            specials: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+            falooda: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+            pasta: "https://images.unsplash.com/photo-1551183053-bf91a1d81141?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+            maggie: "https://images.unsplash.com/photo-1551782450-17144efb9c50?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+            starters: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+        };
+
+        // Assign category-based images to all items
         Object.keys(menuData).forEach(category => {
             menuData[category].forEach(item => {
-                // Use placeholder images for demo
-                item.image = `https://source.unsplash.com/random/300x200/?${encodeURIComponent(item.name.replace(/\s+/g, ','))}`;
+                item.image = categoryImages[category];
             });
         });
 
@@ -1385,7 +1402,7 @@
                     const longitude = position.coords.longitude;
                     
                     userLocation = { latitude, longitude };
-                    locationCoords.value = `${latitude},${longitude}`;
+                    locationCoords.value = `https://www.google.com/maps?q=${latitude},${longitude}`;
                     locationInfo.innerHTML = `<i class="fas fa-check-circle"></i> Location shared successfully!`;
                     
                     getLocationBtn.disabled = false;
@@ -1461,6 +1478,11 @@
             message += `Name: ${name}\n`;
             message += `Phone: ${phone}\n`;
             message += `Address: ${address}\n\n`;
+            
+            // Add Google Maps location if available
+            if (locationCoords.value) {
+                message += `Google Maps Location: ${locationCoords.value}\n\n`;
+            }
             
             // Order items
             message += "Order Items\n";
